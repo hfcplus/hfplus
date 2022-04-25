@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="plus.hf.demo.mapper.UserMapper">
+    <resultMap id="baseMap" type="plus.hf.demo.domain.User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="sex" column="sex"/>
+        <result property="password" column="password"/>
+        <result property="expireTime" column="expire_time"/>
+        <result property="lockState" column="lock_state"/>
+        <result property="deptNo" column="dept_no"/>
+        <result property="allowIps" column="allow_ips"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="editTime" column="edit_time"/>
+        <result property="editBy" column="edit_by"/>
+    </resultMap>
+
+    <sql id="allColumns">
+        id, name, phone, email,sex,password,expire_time,lock_state,dept_no,allow_ips,create_time,create_by,edit_time,edit_by
+    </sql>
+
+    <select id="userLoginByEmail" resultMap="baseMap">
+        select <include refid="allColumns"></include>
+        from user where email = #{email} and password = #{password}
+    </select>
+</mapper>
